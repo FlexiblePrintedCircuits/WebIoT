@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 #Google map API settings
 endpoint = 'https://maps.googleapis.com/maps/api/directions/json?'
-api_key = 'AIzaSyDVv3YmDph1V6Hvfw2WMOcpopVrvHKF2NM'
+api_key = '<api_key>'
 gmaps = googlemaps.Client(key=api_key)
 
 conn = sqlite3.connect('Bus.db',check_same_thread=False)
