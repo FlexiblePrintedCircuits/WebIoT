@@ -8,5 +8,5 @@ devote for Hizuki...
 1. BusDB.py　を実行
 2. Google API keyをmain.py 17行目に設定
 3. http://127.0.0.1:5000/AddDB?BusID=5&AreaID=0&time="2021-02-28 12:10:00"&personNum=10 にアクセス
-4. http://127.0.0.1:5000/estimate/5
+4. http://127.0.0.1:5000/estimate/5 にアクセス
 
