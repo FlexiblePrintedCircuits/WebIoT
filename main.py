@@ -130,7 +130,7 @@ def estimate_time(BusID):
                     dt1 = datetime.datetime.strptime(ImaginaryBusTime[2],'%Y-%m-%d %H:%M').replace(second=0)
                     dt2 = datetime.datetime.strptime(estimate_time,'%Y-%m-%d %H:%M:%S.%f').replace(microsecond=0)
                     time_delta = dt1 - dt2
-                    estimates[destination[1]] = [ str(dt2), str(dt1), time_delta.seconds]
+                    estimates[destination[1]] = [str(dt1), str(dt2), time_delta.seconds]
     return json.dumps(estimates).encode().decode('unicode-escape')
 
 if __name__ == '__main__':
