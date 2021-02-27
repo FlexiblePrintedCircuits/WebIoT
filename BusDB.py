@@ -28,16 +28,16 @@ for Bus in range(BusNum):
         Str = "INSERT INTO ImaginaryBusTimetable VALUES(" + str(Bus) + "," + str(area) + ",\"" + startTime +str(time) +":00"+"\")"
         c.execute(Str)
 #テスト
-c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 0, '2021-2-28 12:00')")
-c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 1, '2021-2-28 12:01')")
-c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 2, '2021-2-28 12:02')")
-c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 3, '2021-2-28 12:03')")
-c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 4, '2021-2-28 12:03')")
-c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 5, '2021-2-28 12:04')")
-c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 6, '2021-2-28 12:04')")
-c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 7, '2021-2-28 12:05')")
-c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 8, '2021-2-28 12:06')")
-c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 9, '2021-2-28 12:07')")
+c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 0, '2021-2-28 12:00:00')")
+c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 1, '2021-2-28 12:01:00')")
+c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 2, '2021-2-28 12:02:00')")
+c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 3, '2021-2-28 12:03:00')")
+c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 4, '2021-2-28 12:03:00')")
+c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 5, '2021-2-28 12:04:00')")
+c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 6, '2021-2-28 12:04:00')")
+c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 7, '2021-2-28 12:05:00')")
+c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 8, '2021-2-28 12:06:00')")
+c.execute("INSERT INTO ImaginaryBusTimeTable VALUES(5, 9, '2021-2-28 12:07:00')")
 
 #テーブルの作成
 c.execute('''CREATE TABLE BusStopTable(areaID INTEGER, name TEXT)''')

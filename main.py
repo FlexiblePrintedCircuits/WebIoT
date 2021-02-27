@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 #Google map API settings
 endpoint = 'https://maps.googleapis.com/maps/api/directions/json?'
-api_key = '<api_key>'
+api_key = ''
 gmaps = googlemaps.Client(key=api_key)
 
 conn = sqlite3.connect('Bus.db',check_same_thread=False)
@@ -99,9 +99,7 @@ def status(BusID):
 
 @app.route('/estimate/<int:BusID>', methods=['GET']) #http://127.0.0.1:5000/estimate/5    
 def estimate_time(BusID):
-    results = gmaps.reverse_geocode((36.40721630028432, 140.52615758149352)) #現在地の座標をタプルで渡す
-    # results = gmaps.reverse_geocode(now_location))
-    origin = results[0]['formatted_address'] #出発地点＝現在地
+    origins = "36.40721630028432,140.52615758149352" #現在地
     
     estimates = {}
     RealBusTimetable = BusDB.execute("select * from RealBusTimetable where BusID = " + str(BusID)).fetchone()
@@ -111,7 +109,7 @@ def estimate_time(BusID):
     for destination in BusStopTable:
         if(destination[0]>previous_stop): #通過済みは表示しない
             unix_time = "now"
-            nav_request = 'language=ja&origin={}&destination={}&departure_time={}&key={}'.format(origin,destination[1],unix_time,api_key)
+            nav_request = 'language=ja&origins={}&destination={}&departure_time={}&key={}'.format(origins,destination[1],unix_time,api_key)
             nav_request = urllib.parse.quote_plus(nav_request, safe='=&')
             request = endpoint + nav_request
 
@@ -127,7 +125,7 @@ def estimate_time(BusID):
                 for key2 in key['legs']:
                     required_seconds = key2['duration_in_traffic']['value']
                     estimate_time = str(now + datetime.timedelta(seconds=required_seconds))
-                    dt1 = datetime.datetime.strptime(ImaginaryBusTime[2],'%Y-%m-%d %H:%M').replace(second=0)
+                    dt1 = datetime.datetime.strptime(ImaginaryBusTime[2],'%Y-%m-%d %H:%M:%S')
                     dt2 = datetime.datetime.strptime(estimate_time,'%Y-%m-%d %H:%M:%S.%f').replace(microsecond=0)
                     time_delta = dt1 - dt2
                     estimates[destination[1]] = [str(dt1), str(dt2), time_delta.seconds]
