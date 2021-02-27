@@ -99,7 +99,10 @@ def status(BusID):
 
 @app.route('/estimate/<int:BusID>', methods=['GET']) #http://127.0.0.1:5000/estimate/5    
 def estimate_time(BusID):
-    origins = "36.40721630028432,140.52615758149352" #現在地
+    # results = gmaps.reverse_geocode((36.40721630028432,140.52615758149352)) #現在地の座標をタプルで渡す
+    # results = gmaps.reverse_geocode(now_location))
+    # origin = results[0]['formatted_address'] #出発地点＝現在地
+    origin = "36.40721630028432,140.52615758149352"
     
     estimates = {}
     RealBusTimetable = BusDB.execute("select * from RealBusTimetable where BusID = " + str(BusID)).fetchone()
@@ -109,7 +112,7 @@ def estimate_time(BusID):
     for destination in BusStopTable:
         if(destination[0]>previous_stop): #通過済みは表示しない
             unix_time = "now"
-            nav_request = 'language=ja&origins={}&destination={}&departure_time={}&key={}'.format(origins,destination[1],unix_time,api_key)
+            nav_request = 'language=ja&origin={}&destination={}&departure_time={}&key={}'.format(origin,destination[1],unix_time,api_key)
             nav_request = urllib.parse.quote_plus(nav_request, safe='=&')
             request = endpoint + nav_request
 
