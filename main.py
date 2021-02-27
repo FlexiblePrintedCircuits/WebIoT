@@ -102,7 +102,7 @@ def estimate_time(BusID):
     # results = gmaps.reverse_geocode((36.40721630028432,140.52615758149352)) #現在地の座標をタプルで渡す
     # results = gmaps.reverse_geocode(now_location))
     # origin = results[0]['formatted_address'] #出発地点＝現在地
-    origin = "36.40721630028432,140.52615758149352"
+    origin = "36.3951041090054, 140.52531010630736"
     
     estimates = {}
     RealBusTimetable = BusDB.execute("select * from RealBusTimetable where BusID = " + str(BusID)).fetchone()
