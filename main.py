@@ -112,7 +112,8 @@ def estimate_time(BusID):
     for destination in BusStopTable:
         if(destination[0]>previous_stop): #通過済みは表示しない
             unix_time = "now"
-            nav_request = 'language=ja&origin={}&destination={}&departure_time={}&key={}'.format(origin,destination[1],unix_time,api_key)
+            destination_coordinates = str(destination[2])+","+str(destination[3])
+            nav_request = 'language=ja&origin={}&destination={}&departure_time={}&key={}'.format(origin,destination_coordinates,unix_time,api_key)
             nav_request = urllib.parse.quote_plus(nav_request, safe='=&')
             request = endpoint + nav_request
 
